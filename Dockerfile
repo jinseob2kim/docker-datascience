@@ -7,6 +7,9 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # Install dependencies and Download 
 RUN apt-get update && apt-get install -y \
+    udev \
+    locales \
+    software-properties-common \
     file \
     curl \
     git \
