@@ -36,11 +36,11 @@ ENV LANG en_US.UTF-8
 
 
 # Update R -latest version
-RUN echo "deb http://cran.rstudio.com/bin/linux/ubuntu bionic/" | sudo tee -a /etc/apt/sources.list && \
-    gpg --keyserver keyserver.ubuntu.com --recv-key E084DAB9 && \
-    gpg -a --export E084DAB9 | sudo apt-key add - && \
-    apt-get update && \
-    apt-get install r-base r-base-dev
+#RUN echo "deb http://cran.rstudio.com/bin/linux/ubuntu bionic/" | sudo tee -a /etc/apt/sources.list && \
+#    gpg --keyserver keyserver.ubuntu.com --recv-key E084DAB9 && \
+#    gpg -a --export E084DAB9 | sudo apt-key add - && \
+#    apt-get update && \
+#    apt-get install r-base r-base-dev
 
 # Install Rstudio-server
 ARG RSTUDIO_VERSION
