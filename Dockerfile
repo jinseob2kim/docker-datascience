@@ -35,6 +35,12 @@ RUN locale-gen en_US.UTF-8
 ENV LANG en_US.UTF-8
 
 
+# Update R -latest version
+RUN echo "deb http://cran.rstudio.com/bin/linux/ubuntu bionic/" | sudo tee -a /etc/apt/sources.list && \
+    gpg --keyserver keyserver.ubuntu.com --recv-key E084DAB9 && \
+    gpg -a --export E084DAB9 | sudo apt-key add - && \
+    apt-get update && \
+    apt-get install r-base r-base-dev
 
 # Install Rstudio-server
 ARG RSTUDIO_VERSION
@@ -60,9 +66,12 @@ RUN adduser math --gecos 'First Last,RoomNumber,WorkPhone,HomePhone' --disabled-
     sh -c 'echo math:math | sudo chpasswd' && \
     usermod -aG sudo math
     
+
     
 EXPOSE 8787 8888 3838
 
-CMD /usr/lib/rstudio-server/bin/rserver 
+CMD ["/usr/lib/rstudio-server/bin/rserver", "--server-daemonize=0", "--server-app-armor-enabled=0"]
 
+# start shiny-server && \
+#  jupyter notebook &> /dev/null &
 
