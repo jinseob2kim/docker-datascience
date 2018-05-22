@@ -22,8 +22,11 @@ RUN apt-get update && apt-get install -y \
     texlive-full \
     python3 \
     python3-pip \
+    npm \
+    nodejs \
     nginx && \
-    pip3 install jupyter && \
+    npm install -g configurable-http-proxy && \
+    pip3 install jupyterhub && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -73,5 +76,4 @@ EXPOSE 8787 8888 3838
 CMD ["/usr/lib/rstudio-server/bin/rserver", "--server-daemonize=0", "--server-app-armor-enabled=0"]
 
 # start shiny-server && \
-#  jupyter notebook &> /dev/null &
 
