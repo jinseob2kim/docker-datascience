@@ -63,5 +63,6 @@ RUN adduser math --gecos 'First Last,RoomNumber,WorkPhone,HomePhone' --disabled-
     
 EXPOSE 8787 8888 3838
 
-CMD ["/usr/lib/rstudio-server/bin/rserver", "--server-daemonize=0", "--server-app-armor-enabled=0"]
+CMD /usr/lib/rstudio-server/bin/rserver 
+
 
