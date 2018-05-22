@@ -2,6 +2,9 @@ FROM ubuntu:18.04
 
 MAINTAINER Jinseob Kim "jinseob2kim@gmail.com"
 
+# Change the docker default timezone from UTC to Seoul
+echo "Asia/Seoul" > /etc/timezone
+
 # Install dependencies and Download 
 RUN apt-get update && apt-get install -y \
     file \
