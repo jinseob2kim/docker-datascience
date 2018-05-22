@@ -7,6 +7,7 @@ sudo jupyterhub
 
 
 ## Start
+wget -q https://raw.githubusercontent.com/jinseob2kim/docker-datascience/master/etc/init.d/jupyterhub -P /etc/init.d
 sudo chmod +x /etc/init.d/jupyterhub
 # Start jupyterhub on boot
 sudo update-rc.d jupyterhub defaults
