@@ -24,6 +24,7 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
     nginx && \
     pip3 install jupyter && \
+    apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # Prevent bugging us later about timezones
@@ -62,4 +63,5 @@ RUN adduser math --gecos 'First Last,RoomNumber,WorkPhone,HomePhone' --disabled-
     
 EXPOSE 8787 8888 3838
 
-    
+CMD ["/usr/lib/rstudio-server/bin/rserver", "--server-daemonize=0", "--server-app-armor-enabled=0"]
+
