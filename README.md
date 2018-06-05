@@ -6,4 +6,9 @@
 [![GitHub license](https://img.shields.io/github/license/jinseob2kim/docker-datascience.svg)](https://github.com/jinseob2kim/docker-datascience/blob/master/LICENSE)
 [![GitHub last commit](https://img.shields.io/github/last-commit/google/skia.svg)](https://github.com/jinseob2kim/docker-datascience)
 
-docker image for data science
+
+## Image download & run
+
+```shell
+sudo docker run jinseob2kim/docker-datascience
+```
