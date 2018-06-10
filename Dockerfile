@@ -19,7 +19,6 @@ RUN apt-get update && apt-get install -y \
     vim \
     r-base \
     psmisc \
-    texlive-full \
     python3 \
     python3-pip \
     npm \
@@ -62,18 +61,40 @@ RUN wget --no-verbose https://s3.amazonaws.com/rstudio-shiny-server-os-build/ubu
     gdebi -n ss-latest.deb && \
     rm -f version.txt ss-latest.deb && \
     R -e "install.packages(c('shiny', 'rmarkdown','ggplot','data.table','DT'), repos='https://cran.rstudio.com/')" 
+    systemctl restart shiny-server
 
 
 # Add user 
 RUN adduser math --gecos 'First Last,RoomNumber,WorkPhone,HomePhone' --disabled-password && \
     sh -c 'echo math:math | sudo chpasswd' && \
     usermod -aG sudo math
-    
 
+    
+# Run rstudio-server & shiny-server
+RUN apt-get install supervisor
+
+RUN mkdir -p /var/log/shiny-server \
+	&& chown shiny:shiny /var/log/shiny-server \
+	&& chown shiny:shiny -R /srv/shiny-server \
+	&& chmod 777 -R /srv/shiny-server \
+	&& chown shiny:shiny -R /opt/shiny-server/samples/sample-apps \
+	&& chmod 777 -R /opt/shiny-server/samples/sample-apps 
+
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+RUN mkdir -p /var/log/supervisor \
+	&& chmod 777 -R /var/log/supervisor
     
 EXPOSE 8787 8888 3838
 
-CMD ["/usr/lib/rstudio-server/bin/rserver", "--server-daemonize=0", "--server-app-armor-enabled=0"]
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"] 
 
+
+
+
+
+
+
+
+#CMD ["/usr/lib/rstudio-server/bin/rserver", "--server-daemonize=0", "--server-app-armor-enabled=0"]
 # start shiny-server && \
 
