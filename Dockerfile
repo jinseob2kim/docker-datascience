@@ -71,7 +71,7 @@ RUN adduser math --gecos 'First Last,RoomNumber,WorkPhone,HomePhone' --disabled-
 
     
 # Run rstudio-server & shiny-server
-RUN apt-get install supervisor
+RUN apt-get install -y supervisor
 
 RUN mkdir -p /var/log/shiny-server \
 	&& chown shiny:shiny /var/log/shiny-server \
