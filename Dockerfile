@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 
 MAINTAINER Jinseob Kim "jinseob2kim@gmail.com"
 
@@ -6,6 +6,7 @@ MAINTAINER Jinseob Kim "jinseob2kim@gmail.com"
 ENV DEBIAN_FRONTEND noninteractive
 
 # Install dependencies and Download 
+
 RUN apt-get update && apt-get install -y \
     udev \
     locales \
@@ -23,6 +24,7 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
     npm \
     nodejs \
+    supervisor \
     nginx && \
     npm install -g configurable-http-proxy && \
     pip3 install jupyterhub && \
@@ -71,8 +73,6 @@ RUN adduser math --gecos 'First Last,RoomNumber,WorkPhone,HomePhone' --disabled-
 
     
 # Run rstudio-server & shiny-server
-RUN apt-get install -y supervisor
-
 RUN mkdir -p /var/log/shiny-server \
 	&& chown shiny:shiny /var/log/shiny-server \
 	&& chown shiny:shiny -R /srv/shiny-server \
