@@ -60,7 +60,7 @@ RUN wget --no-verbose https://s3.amazonaws.com/rstudio-shiny-server-os-build/ubu
     wget --no-verbose "https://s3.amazonaws.com/rstudio-shiny-server-os-build/ubuntu-14.04/x86_64/shiny-server-$VERSION-amd64.deb" -O ss-latest.deb && \
     gdebi -n ss-latest.deb && \
     rm -f version.txt ss-latest.deb && \
-    R -e "install.packages(c('shiny', 'rmarkdown','ggplot','data.table','DT'), repos='https://cran.rstudio.com/')" 
+    R -e "install.packages(c('shiny', 'rmarkdown'), repos='https://cran.rstudio.com/')" 
 
 
 
@@ -93,8 +93,4 @@ CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
 
 
 
-
-
-#CMD ["/usr/lib/rstudio-server/bin/rserver", "--server-daemonize=0", "--server-app-armor-enabled=0"]
-# start shiny-server && \
 
