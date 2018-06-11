@@ -86,7 +86,7 @@ RUN mkdir -p /var/log/supervisor \
     
     
 ## Port name : /rstudio, /shiny
-RUN mkdir -p /etc/nginx/RstudioAMI 
+RUN mkdir -p /etc/nginx/RStudioAMI 
 COPY /etc/nginx/RStudioAMI/* /etc/nginx/RStudioAMI 
 COPY /etc/nginx/site-available/* /etc/nginx/site-available
 COPY /etc/nginx/site-enabled/* /etc/nginx/site-enabled
