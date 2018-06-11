@@ -88,10 +88,11 @@ RUN mkdir -p /var/log/supervisor \
 ## Port name : /rstudio, /shiny
 RUN mkdir -p /etc/nginx/RStudioAMI 
 COPY /etc/nginx/RStudioAMI/* /etc/nginx/RStudioAMI/ 
-COPY /etc/nginx/site-available/* /etc/nginx/site-available/
-COPY /etc/nginx/site-enabled/* /etc/nginx/site-enabled/
-COPY /etc/nginx/init.d/jupyterhub /etc/nginx/init.d/jupyterhub
-COPY /etc/nginx/jupyterhub/jupyterhub_config.py /etc/nginx/jupyterhub/jupyterhub_config.py
+COPY /etc/nginx/sites-available/* /etc/nginx/sites-available/
+COPY /etc/nginx/sites-enabled/* /etc/nginx/sites-enabled/
+COPY /etc/init.d/jupyterhub /etc/init.d/jupyterhub
+RUN mkdir /etc/jupyterhub
+COPY /etc/jupyterhub/jupyterhub_config.py /etc/jupyterhub/jupyterhub_config.py
 
 
 
