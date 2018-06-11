@@ -84,7 +84,18 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN mkdir -p /var/log/supervisor \
 	&& chmod 777 -R /var/log/supervisor
     
-EXPOSE 8787 8888 3838
+    
+## Port name : /rstudio, /shiny
+RUN mkdir -p /etc/nginx/RstudioAMI 
+COPY /etc/nginx/RStudioAMI/* /etc/nginx/RStudioAMI 
+COPY /etc/nginx/site-available/* /etc/nginx/site-available
+COPY /etc/nginx/site-enabled/* /etc/nginx/site-enabled
+COPY /etc/nginx/init.d/jupyterhub /etc/nginx/init.d/jupyterhub
+COPY /etc/nginx/jupyterhub/jupyterhub_config.py /etc/nginx/jupyterhub/jupyterhub_config.py
+
+
+
+EXPOSE 8787 8000 3838
 
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"] 
 
