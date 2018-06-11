@@ -93,6 +93,7 @@ COPY /etc/nginx/sites-enabled/* /etc/nginx/sites-enabled/
 COPY /etc/init.d/jupyterhub /etc/init.d/jupyterhub
 RUN mkdir /etc/jupyterhub
 COPY /etc/jupyterhub/jupyterhub_config.py /etc/jupyterhub/jupyterhub_config.py
+RUN service nginx restart
 
 
 
