@@ -91,9 +91,10 @@ COPY /etc/nginx/RStudioAMI/* /etc/nginx/RStudioAMI/
 COPY /etc/nginx/sites-available/* /etc/nginx/sites-available/
 COPY /etc/nginx/sites-enabled/* /etc/nginx/sites-enabled/
 COPY /etc/init.d/jupyterhub /etc/init.d/jupyterhub
-RUN mkdir /etc/jupyterhub
+RUN  mkdir /etc/jupyterhub
 COPY /etc/jupyterhub/jupyterhub_config.py /etc/jupyterhub/jupyterhub_config.py
-RUN service nginx restart
+RUN  rm /etc/nginx/sites-enabled/default
+RUN  service nginx restart
 
 
 
