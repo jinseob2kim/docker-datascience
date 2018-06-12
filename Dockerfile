@@ -80,18 +80,18 @@ RUN mkdir -p /var/log/shiny-server \
 	&& chown shiny:shiny -R /opt/shiny-server/samples/sample-apps \
 	&& chmod 777 -R /opt/shiny-server/samples/sample-apps 
 
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-RUN mkdir -p /var/log/supervisor \
-	&& chmod 777 -R /var/log/supervisor
     
     
 ## Port name : /rstudio, /shiny, /julia
+RUN  jupyter notebook --generate-config
+COPY jupyter_notebook_config.py ~/.jupyter/jupyter_notebook_config.py
 COPY default /etc/nginx/sites-enabled/
-
-RUN  jupyter notebook & 
 RUN  service nginx restart
 
-
+## Multiple run
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+RUN mkdir -p /var/log/supervisor \
+	&& chmod 777 -R /var/log/supervisor
 
 EXPOSE 8787 8888 3838
 
