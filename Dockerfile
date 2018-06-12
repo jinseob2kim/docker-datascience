@@ -27,7 +27,7 @@ RUN apt-get update && apt-get install -y \
     supervisor \
     nginx && \
     npm install -g configurable-http-proxy && \
-    pip3 install jupyterhub && \
+    pip3 install jupyter && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -85,19 +85,15 @@ RUN mkdir -p /var/log/supervisor \
 	&& chmod 777 -R /var/log/supervisor
     
     
-## Port name : /rstudio, /shiny
+## Port name : /rstudio, /shiny, /julia
 COPY default /etc/nginx/sites-enabled/
 
-## Jupyter
-COPY /etc/init.d/jupyterhub /etc/init.d/jupyterhub
-RUN  mkdir /etc/jupyterhub
-COPY /etc/jupyterhub/jupyterhub_config.py /etc/jupyterhub/jupyterhub_config.py
-
+RUN  jupyter notebook & 
 RUN  service nginx restart
 
 
 
-EXPOSE 8787 8000 3838
+EXPOSE 8787 8888 3838
 
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"] 
 
