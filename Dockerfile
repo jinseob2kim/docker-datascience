@@ -82,7 +82,7 @@ RUN mkdir -p /var/log/shiny-server \
 
     
     
-## Port name : /rstudio, /shiny, /julia
+## Port name : /rstudio, /shiny, /notebook
 RUN  jupyter notebook --generate-config
 COPY jupyter_notebook_config.py ~/.jupyter/jupyter_notebook_config.py
 COPY default /etc/nginx/sites-enabled/
