@@ -13,7 +13,9 @@
 docker run --rm -d -p 8000:8000 -p 3838:3838 -p 8787:8787 -p 80:80 --name js jinseob2kim/docker-datascience
 ```
 
-## Run in a local computer (id: **math**, password: **math**)
+## Run (id: **math**, password: **math**) 
+
+### In local computer 
 
 1. Rstudio server : http://localhost/rstudio
 
@@ -24,7 +26,7 @@ docker run --rm -d -p 8000:8000 -p 3838:3838 -p 8787:8787 -p 80:80 --name js jin
 3. jupyterhub : http://localhost/julia
 
 
-## Run in a server
+### In server
 
 1. Rstudio server : **Your IP**/rstudio
 
