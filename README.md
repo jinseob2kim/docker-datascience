@@ -10,5 +10,13 @@
 ## Image download & run
 
 ```shell
-sudo docker run jinseob2kim/docker-datascience
+docker run --rm -d -p 8000:8000 -p 3838:3838 -p 8787:8787 -p 80:80 --name js jinseob2kim/docker-datascience
 ```
+
+1. Rstudio server : http://localhost/rstudio
+
+
+2. Shiny server : http://localhost/shiny
+
+
+3. jupyterhub : http://localhost/julia
