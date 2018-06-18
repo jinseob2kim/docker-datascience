@@ -1,8 +1,15 @@
+## Rstudio
+RSTUDIO_LATEST=$(wget --no-check-certificate -qO- https://s3.amazonaws.com/rstudio-server/current.ver) 
+[ -z "$RSTUDIO_VERSION" ] && RSTUDIO_VERSION=$RSTUDIO_LATEST || true 
+wget -q http://download2.rstudio.org/rstudio-server-${RSTUDIO_VERSION}-amd64.deb 
+dpkg -i rstudio-server-${RSTUDIO_VERSION}-amd64.deb 
+rm rstudio-server-*-amd64.deb 
+
+
 ## jupyterhub
 # anaconda
 wget https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh
 sudo bash Anaconda3-5.2.0-Linux-x86_64.sh
-
 
 sudo apt-get -y install python3-pip
 sudo apt-get -y install npm nodejs
@@ -14,6 +21,7 @@ jupyterhub --no-ssl
 ## setup 
 # nginx
 sudo apt-get install nginx
+sudo wget https://raw.githubusercontent.com/jinseob2kim/docker-datascience/master/default -O /etc/nginx/sites-enabled/default
 sudo chmod 777 /etc/nginx/sites-enabled/default
 sudo service nginx restart
 
@@ -68,3 +76,10 @@ mv julia-d55cadc350 julia
 sudo ln -s ~/julia/bin/julia /usr/local/bin/julia
 julia -E 'Pkg.add("IJulia")'
 julia -E 'Pkg.update()'
+
+
+## Docker 
+sudo apt-get install docker.io
+# Docker-compose
+sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
