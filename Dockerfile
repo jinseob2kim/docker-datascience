@@ -27,7 +27,8 @@ RUN apt-get update && apt-get install -y \
     supervisor \
     nginx && \
     npm install -g configurable-http-proxy && \
-    pip3 install jupyter && \
+    pip3 install jupyterhub && \
+    pip3 install --upgrade notebook && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -72,28 +73,27 @@ RUN adduser math --gecos 'First Last,RoomNumber,WorkPhone,HomePhone' --disabled-
     usermod -aG sudo math
 
     
-# Run rstudio-server & shiny-server
-RUN mkdir -p /var/log/shiny-server \
-	&& chown shiny:shiny /var/log/shiny-server \
-	&& chown shiny:shiny -R /srv/shiny-server \
-	&& chmod 777 -R /srv/shiny-server \
-	&& chown shiny:shiny -R /opt/shiny-server/samples/sample-apps \
-	&& chmod 777 -R /opt/shiny-server/samples/sample-apps 
+    
+    
+## Port name : /rstudio, /shiny, /julia
+RUN wget https://gist.githubusercontent.com/lambdalisue/f01c5a65e81100356379/raw/ecf427429f07a6c2d6c5c42198cc58d4e332b425/jupyterhub -O /etc/init.d/jupyterhub && \
+    chmod +x /etc/init.d/jupyterhub && \
+    mkdir /etc/jupyterhub && \
+    jupyterhub --generate-config -f /etc/jupyterhub/jupyterhub_config.py
 
-    
-    
-## Port name : /rstudio, /shiny, /notebook
-RUN  jupyter notebook --generate-config
-COPY jupyter_notebook_config.py /root/.jupyter/jupyter_notebook_config.py
+COPY jupyterhub_config.py /etc/jupyterhub/
 COPY default /etc/nginx/sites-enabled/
 RUN  service nginx restart
+     
+
+
 
 ## Multiple run
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN mkdir -p /var/log/supervisor \
 	&& chmod 777 -R /var/log/supervisor
 
-EXPOSE 8787 8888 3838
+EXPOSE 8787 8000 3838
 
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"] 
 
