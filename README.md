@@ -26,10 +26,10 @@ docker run --rm -d -p 8000:8000 -p 3838:3838 -p 8787:8787 -p 80:80 --name js jin
 
 ## Run in a server
 
-1. Rstudio server : <Your IP>/rstudio
+1. Rstudio server : **Your IP**/rstudio
 
 
-2. Shiny server : <Your IP>/shiny
+2. Shiny server : **Your IP**/shiny
 
 
-3. jupyterhub : <Your IP>/julia
+3. jupyterhub : **Your IP**/julia
