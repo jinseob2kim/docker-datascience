@@ -73,7 +73,7 @@ RUN adduser math --gecos 'First Last,RoomNumber,WorkPhone,HomePhone' --disabled-
     usermod -aG sudo math
 
     
-    
+
     
 ## Port name : /rstudio, /shiny, /julia
 RUN wget https://gist.githubusercontent.com/lambdalisue/f01c5a65e81100356379/raw/ecf427429f07a6c2d6c5c42198cc58d4e332b425/jupyterhub -O /etc/init.d/jupyterhub && \
@@ -93,7 +93,7 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN mkdir -p /var/log/supervisor \
 	&& chmod 777 -R /var/log/supervisor
 
-EXPOSE 8787 8000 3838
+EXPOSE 8787 8000 3838 80
 
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"] 
 
