@@ -76,17 +76,18 @@ RUN adduser math --gecos 'First Last,RoomNumber,WorkPhone,HomePhone' --disabled-
 
     
 ## Port name : /rstudio, /shiny, /julia
-RUN wget https://gist.githubusercontent.com/lambdalisue/f01c5a65e81100356379/raw/ecf427429f07a6c2d6c5c42198cc58d4e332b425/jupyterhub -O /etc/init.d/jupyterhub && \
-    chmod +x /etc/init.d/jupyterhub && \
-    mkdir /etc/jupyterhub && \
+#RUN wget https://gist.githubusercontent.com/lambdalisue/f01c5a65e81100356379/raw/ecf427429f07a6c2d6c5c42198cc58d4e332b425/jupyterhub -O /etc/init.d/jupyterhub && \
+#    chmod +x /etc/init.d/jupyterhub && \
+
+RUN mkdir /etc/jupyterhub && \
     jupyterhub --generate-config -f /etc/jupyterhub/jupyterhub_config.py
 
 COPY jupyterhub_config.py /etc/jupyterhub/
 COPY default /etc/nginx/sites-enabled/
 
-RUN /etc/init.d/jupyterhub start && \
-    service jupyterhub start && \
-    service nginx restart
+#RUN /etc/init.d/jupyterhub start && \
+#    service jupyterhub start && \
+#    service nginx restart
      
 
 
