@@ -83,9 +83,11 @@ RUN wget https://gist.githubusercontent.com/lambdalisue/f01c5a65e81100356379/raw
 
 COPY jupyterhub_config.py /etc/jupyterhub/
 COPY default /etc/nginx/sites-enabled/
-#RUN  service nginx restart
-     
 
+RUN /etc/init.d/jupyterhub start && \
+    service jupyterhub start && \
+    service nginx restart
+     
 
 
 ## Multiple run
