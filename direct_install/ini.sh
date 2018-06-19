@@ -44,8 +44,8 @@ sudo chmod 777  /etc/jupyterhub/jupyterhub_config.py
 # Start jupyterhub on boot
 sudo /etc/init.d/jupyterhub start
 sudo service jupyterhub start
-sudo service jupyterhub stop
-sudo update-rc.d jupyterhub defaults
+#sudo service jupyterhub stop
+#sudo update-rc.d jupyterhub defaults
 
 
 ## Shiny server
