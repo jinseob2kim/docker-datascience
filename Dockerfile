@@ -67,7 +67,7 @@ RUN wget --no-verbose https://s3.amazonaws.com/rstudio-shiny-server-os-build/ubu
     R -e "install.packages(c('shiny', 'rmarkdown'), repos='https://cran.rstudio.com/')" 
 
 COPY shiny-server.conf /etc/shiny-server/
-RUN mkdir -p /home/math/ShinyApps
+RUN mkdir -p /home/js/ShinyApps
 COPY /srv/shiny-server/ /home/js/ShinyApps
 RUN systemctl restart shiny-server
 
