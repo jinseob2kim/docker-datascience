@@ -13,7 +13,7 @@
 docker run --rm -d -p 8000:8000 -p 3838:3838 -p 8787:8787 -p 80:80 --name js jinseob2kim/docker-datascience
 ```
 
-## Run (id: **math**, password: **math**) 
+## Run (id: **js**, password: **js**) 
 
 ### In local computer 
 

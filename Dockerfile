@@ -65,12 +65,16 @@ RUN wget --no-verbose https://s3.amazonaws.com/rstudio-shiny-server-os-build/ubu
     rm -f version.txt ss-latest.deb && \
     R -e "install.packages(c('shiny', 'rmarkdown'), repos='https://cran.rstudio.com/')" 
 
+#COPY shiny-server.conf /etc/shiny-server/
+#RUN mkdir -p /home/math/ShinyApps
+#COPY /srv/shiny-server/ /home/js/ShinyApps
+#RUN sudo systemctl restart shiny-server
 
 
-# Add user 
-RUN adduser math --gecos 'First Last,RoomNumber,WorkPhone,HomePhone' --disabled-password && \
-    sh -c 'echo math:math | sudo chpasswd' && \
-    usermod -aG sudo math
+# Add user (js)
+RUN adduser js --gecos 'First Last,RoomNumber,WorkPhone,HomePhone' --disabled-password && \
+    sh -c 'echo js:js | sudo chpasswd' && \
+    usermod -aG sudo js
 
     
 
