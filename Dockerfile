@@ -10,6 +10,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y \
     udev \
     locales \
+    systemd \
     software-properties-common \
     file \
     curl \
@@ -65,10 +66,10 @@ RUN wget --no-verbose https://s3.amazonaws.com/rstudio-shiny-server-os-build/ubu
     rm -f version.txt ss-latest.deb && \
     R -e "install.packages(c('shiny', 'rmarkdown'), repos='https://cran.rstudio.com/')" 
 
-#COPY shiny-server.conf /etc/shiny-server/
-#RUN mkdir -p /home/math/ShinyApps
-#COPY /srv/shiny-server/ /home/js/ShinyApps
-#RUN sudo systemctl restart shiny-server
+COPY shiny-server.conf /etc/shiny-server/
+RUN mkdir -p /home/math/ShinyApps
+COPY /srv/shiny-server/ /home/js/ShinyApps
+RUN systemctl restart shiny-server
 
 
 # Add user (js)
