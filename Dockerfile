@@ -74,8 +74,8 @@ RUN wget --no-verbose https://s3.amazonaws.com/rstudio-shiny-server-os-build/ubu
 COPY shiny-server.conf /etc/shiny-server/
 RUN mkdir -p /home/js/ShinyApps
 RUN cp -r /srv/shiny-server/* /home/js/ShinyApps && \
-    chown js:js ShinyApps && \
-    chmod 777 ShinyApps
+    chown js:js /home/js/ShinyApps 
+    
 
 
     
