@@ -10,7 +10,6 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y \
     udev \
     locales \
-    systemd \
     software-properties-common \
     file \
     curl \
@@ -69,7 +68,7 @@ RUN wget --no-verbose https://s3.amazonaws.com/rstudio-shiny-server-os-build/ubu
 COPY shiny-server.conf /etc/shiny-server/
 RUN mkdir -p /home/js/ShinyApps
 RUN cp -r /srv/shiny-server /home/js/ShinyApps
-RUN systemctl restart shiny-server
+
 
 
 # Add user (js)
