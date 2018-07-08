@@ -88,14 +88,15 @@ git config --global user.name "Jinseob Kim"
 wget https://julialang-s3.julialang.org/bin/linux/x64/0.6/julia-0.6.3-linux-x86_64.tar.gz
 tar -zxvf julia-0.6.3-linux-x86_64.tar.gz 
 rm julia-0.6.3-linux-x86_64.tar.gz 
-mv julia-d55cadc350 julia
-sudo ln -s ~/julia/bin/julia /usr/local/bin/julia
+mv julia-d55cadc350 julia_sources
+sudo ln -s ~/julia_sources/bin/julia /usr/local/bin/julia
 julia -E 'Pkg.add("IJulia")'
 julia -E 'Pkg.update()'
 
 
 ## Docker 
 sudo apt-get install docker.io
+sudo usermod -aG docker $USER 
 # Docker-compose
 sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
