@@ -13,14 +13,14 @@
 docker run --rm -d -p 8000:8000 -p 3838:3838 -p 8787:8787 -p 80:80 --name js jinseob2kim/docker-datascience
 ```
 
-## Run (id: **math**, password: **math**) 
+## Run (id: **js**, password: **js**) 
 
 ### In local computer 
 
 1. Rstudio server : http://localhost/rstudio
 
 
-2. Shiny server : http://localhost/shiny
+2. Shiny server : http://localhost/shiny/js
 
 
 3. jupyterhub : http://localhost/julia
@@ -31,7 +31,7 @@ docker run --rm -d -p 8000:8000 -p 3838:3838 -p 8787:8787 -p 80:80 --name js jin
 1. Rstudio server : **Your IP**/rstudio
 
 
-2. Shiny server : **Your IP**/shiny
+2. Shiny server : **Your IP**/shiny/js
 
 
 3. jupyterhub : **Your IP**/julia

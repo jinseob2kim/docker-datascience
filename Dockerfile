@@ -40,6 +40,12 @@ RUN locale-gen en_US.UTF-8
 ENV LANG en_US.UTF-8
 
 
+# Add user (js)
+RUN adduser js --gecos 'First Last,RoomNumber,WorkPhone,HomePhone' --disabled-password && \
+    sh -c 'echo js:js | sudo chpasswd' && \
+    usermod -aG sudo js
+
+
 # Update R -latest version
 #RUN echo "deb http://cran.rstudio.com/bin/linux/ubuntu bionic/" | sudo tee -a /etc/apt/sources.list && \
 #    gpg --keyserver keyserver.ubuntu.com --recv-key E084DAB9 && \
@@ -65,15 +71,14 @@ RUN wget --no-verbose https://s3.amazonaws.com/rstudio-shiny-server-os-build/ubu
     rm -f version.txt ss-latest.deb && \
     R -e "install.packages(c('shiny', 'rmarkdown'), repos='https://cran.rstudio.com/')" 
 
-
-
-# Add user 
-RUN adduser math --gecos 'First Last,RoomNumber,WorkPhone,HomePhone' --disabled-password && \
-    sh -c 'echo math:math | sudo chpasswd' && \
-    usermod -aG sudo math
-
+COPY shiny-server.conf /etc/shiny-server/
+RUN mkdir -p /home/js/ShinyApps
+RUN cp -r /srv/shiny-server/* /home/js/ShinyApps && \
+    chown js:js /home/js/ShinyApps 
     
 
+
+    
     
 ## Port name : /rstudio, /shiny, /julia
 #RUN wget https://gist.githubusercontent.com/lambdalisue/f01c5a65e81100356379/raw/ecf427429f07a6c2d6c5c42198cc58d4e332b425/jupyterhub -O /etc/init.d/jupyterhub && \
