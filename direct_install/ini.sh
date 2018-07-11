@@ -1,6 +1,6 @@
 ## adduser
 adduser math --gecos 'First Last,RoomNumber,WorkPhone,HomePhone' --disabled-password 
-sh -c 'echo math:math | sudo chpasswd' 
+sh -c 'echo js:js | sudo chpasswd' 
 usermod -aG sudo math
 
 ## R 
@@ -100,3 +100,5 @@ sudo usermod -aG docker $USER
 # Docker-compose
 sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
+
+
