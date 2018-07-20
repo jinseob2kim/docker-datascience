@@ -1,7 +1,7 @@
 ## adduser
-adduser math --gecos 'First Last,RoomNumber,WorkPhone,HomePhone' --disabled-password 
+adduser js --gecos 'First Last,RoomNumber,WorkPhone,HomePhone' --disabled-password 
 sh -c 'echo js:js | sudo chpasswd' 
-usermod -aG sudo math
+usermod -aG sudo js
 
 ## R 
 sudo apt-get install r-base
